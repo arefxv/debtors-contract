@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.26;
+
+import {debtors} from "./debtors.sol";
+
+contract debtorsFactory{
+
+    debtors [] public listOfDebtorsContracts;
+
+    function createDebtorsContract () public{
+        debtors newDebtorsContract = new debtors ();
+        listOfDebtorsContracts.push(newDebtorsContract);
+
+    }
+
+    function dfStore (uint256 _debtorsIndex , uint256 _newDebtorsNumber ) public {
+        debtors myDebtors = debtors (listOfDebtorsContracts [_debtorsIndex]);
+        myDebtors.store(_newDebtorsNumber);
+    }
+
+    function dfGet(uint256 _debtorsIndex) public view returns(uint256) {
+        debtors myDebtors = debtors(listOfDebtorsContracts[_debtorsIndex]);
+        return myDebtors.retrieve();
+    }
+}

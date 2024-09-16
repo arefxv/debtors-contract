@@ -1,0 +1,60 @@
+//SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.26;
+
+contract debtors {
+    uint256 public amount;
+
+    struct Debtors{
+        uint256 amount;
+        string name;
+    }
+
+    Debtors [] public listOfDebtors;
+
+    mapping ( string => uint256) nameToAmount;
+
+    function store (uint256 _amount) public virtual {
+        amount = _amount;
+    }
+
+    function retrieve () public view returns (uint256) {
+        return amount;
+    }
+
+    function addDebtor (string memory _name , uint256 _amount) public {
+        listOfDebtors.push(Debtors (_amount , _name));
+        nameToAmount [_name] = _amount;
+    }
+
+
+
+
+}
+
+contract johnDebtors {
+    uint256 public amount;
+
+
+   struct debtorsOfJohn {
+    uint256 amount;
+    string name;
+   }
+
+   debtorsOfJohn [] public listOfDebtorsOfJohn;
+
+   mapping (string => uint256) nameToAmount;
+
+   function srote(uint256 _amount) public{
+    amount = _amount;
+   }
+
+   function retrieve () public view returns (uint256){
+    return amount;
+   }
+
+   function addDebtor (string memory _name , uint256 _amount) public{
+    listOfDebtorsOfJohn.push(debtorsOfJohn (_amount , _name));
+    nameToAmount[_name] = _amount;
+   }
+}
